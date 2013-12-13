@@ -16,7 +16,6 @@
 @interface ViewController ()
 
 @property (nonatomic, strong) LabColor *labColor;
-@property (nonatomic, strong) id colorObserveToken;
 @property (weak, nonatomic) IBOutlet UISlider *lSlider;
 @property (weak, nonatomic) IBOutlet UISlider *aSlider;
 @property (weak, nonatomic) IBOutlet UISlider *bSlider;
@@ -29,6 +28,11 @@
 
 @implementation ViewController
 
+- (void)dealloc
+{
+    NSLog(@"dealloc");
+}
+
 - (void)viewDidLoad;
 {
     [super viewDidLoad];
@@ -38,7 +42,7 @@
 - (void)setLabColor:(LabColor *)labColor
 {
     _labColor = labColor;
-    self.colorObserveToken = [KeyValueObserver observeObject:labColor keyPath:@"color" target:self selector:@selector(colorDidChange:) options:NSKeyValueObservingOptionInitial];
+    [KeyValueObserver observeObject:labColor keyPath:@"color" target:self selector:@selector(colorDidChange:) options:NSKeyValueObservingOptionInitial];
     self.lSlider.value = self.labColor.lComponent;
     self.aSlider.value = self.labColor.aComponent;
     self.bSlider.value = self.labColor.bComponent;

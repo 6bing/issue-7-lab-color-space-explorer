@@ -28,19 +28,19 @@
 /// @endcode
 /// The passed in dictionary is the KVO change dictionary (c.f. @c NSKeyValueChangeKindKey, @c NSKeyValueChangeNewKey etc.)
 ///
-/// @returns the opaque token object to be stored in a property
+/// 
 ///
 /// Example:
 ///
 /// @code
-///   self.nameObserveToken = [KeyValueObserver observeObject:user
+///   [KeyValueObserver observeObject:user
 ///                                                   keyPath:@"name"
 ///                                                    target:self
 ///                                                  selector:@selector(nameDidChange:)];
 /// @endcode
-+ (NSObject *)observeObject:(id)object keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector __attribute__((warn_unused_result));
++ (void)observeObject:(id)object keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector;
 
 /// Create a key-value-observer with the given KVO options
-+ (NSObject *)observeObject:(id)object keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector options:(NSKeyValueObservingOptions)options __attribute__((warn_unused_result));
++ (void)observeObject:(id)object keyPath:(NSString*)keyPath target:(id)target selector:(SEL)selector options:(NSKeyValueObservingOptions)options;
 
 @end
